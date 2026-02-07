@@ -7,6 +7,7 @@ import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
 import { Certificate, CertificateValidation } from 'aws-cdk-lib/aws-certificatemanager';
 import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
 import { Construct } from 'constructs';
+import * as fs from 'fs';
 
 export class InfrastructureStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -67,13 +68,16 @@ export class InfrastructureStack extends Stack {
       zone,
     });
 
-    // Deploy site contents to S3
-    new BucketDeployment(this, 'DeployWebsite', {
-      sources: [Source.asset('../thevoldarian/build')],
-      destinationBucket: siteBucket,
-      distribution,
-      distributionPaths: ['/*'],
-    });
+    // Deploy site contents to S3 (only if build folder exists)
+    const buildPath = '../thevoldarian/build';
+    if (fs.existsSync(buildPath)) {
+      new BucketDeployment(this, 'DeployWebsite', {
+        sources: [Source.asset(buildPath)],
+        destinationBucket: siteBucket,
+        distribution,
+        distributionPaths: ['/*'],
+      });
+    }
 
     // Outputs
     new CfnOutput(this, 'DistributionDomainName', {

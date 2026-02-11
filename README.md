@@ -14,7 +14,7 @@ AWS CDK infrastructure for deploying a React website with CloudFront, S3, Route5
 - 🌍 Global CDN via CloudFront
 - 📦 S3 static hosting with Origin Access Control
 - 🔄 Automatic cache invalidation on deployment
-- 🎯 SPA routing support (404 → index.html)
+- 🎯 SPA routing support (403/404 → index.html)
 
 ## Architecture
 
@@ -49,16 +49,16 @@ const domainName = 'your-domain.com';
 
 ## Commands
 
-* `npm run build` - Compile TypeScript
-* `npm run watch` - Watch mode
-* `npm test` - Run Vitest tests
-* `npm run test:ui` - Vitest UI
-* `npm test -- --coverage` - Run tests with coverage
-* `npm run format` - Format code with Prettier
-* `npm run lint` - Lint code
-* `cdk deploy` - Deploy to AWS
-* `cdk diff` - Show changes
-* `cdk synth` - Generate CloudFormation template
+- `npm run build` - Compile TypeScript
+- `npm run watch` - Watch mode
+- `npm test` - Run Vitest tests
+- `npm run test:ui` - Vitest UI
+- `npm test -- --coverage` - Run tests with coverage
+- `npm run format` - Format code with Prettier
+- `npm run lint` - Lint code
+- `cdk deploy` - Deploy to AWS
+- `cdk diff` - Show changes
+- `cdk synth` - Generate CloudFormation template
 
 ## Deployment
 

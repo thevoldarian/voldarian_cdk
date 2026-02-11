@@ -48,6 +48,11 @@ export class InfrastructureStack extends Stack {
       defaultRootObject: 'index.html',
       errorResponses: [
         {
+          httpStatus: 403,
+          responseHttpStatus: 200,
+          responsePagePath: '/index.html',
+        },
+        {
           httpStatus: 404,
           responseHttpStatus: 200,
           responsePagePath: '/index.html',
@@ -68,8 +73,10 @@ export class InfrastructureStack extends Stack {
       zone,
     });
 
-    // Deploy site contents to S3 (only if build folder exists)
-    const buildPath = '../thevoldarian/build';
+    // Deploy site contents to S3
+    // Note: Conditional check allows infrastructure tests to run in CI without requiring
+    // the frontend build artifacts. The dist folder only exists after building the React app.
+    const buildPath = '../thevoldarian/dist';
     if (fs.existsSync(buildPath)) {
       new BucketDeployment(this, 'DeployWebsite', {
         sources: [Source.asset(buildPath)],

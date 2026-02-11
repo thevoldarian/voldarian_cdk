@@ -1,7 +1,6 @@
 {
   "name": "infrastructure",
   "version": "0.1.0",
-  "type": "module",
   "bin": {
     "infrastructure": "bin/infrastructure.js"
   },
@@ -10,6 +9,7 @@
     "watch": "tsc -w",
     "test": "vitest",
     "test:ui": "vitest --ui",
+    "test:coverage": "vitest --run --coverage",
     "format": "prettier --write \"**/*.ts\"",
     "format:check": "prettier --check \"**/*.ts\"",
     "lint": "eslint .",
@@ -39,6 +39,7 @@
     "@aws-cdk/aws-route53-targets": "^1.203.0",
     "@aws-cdk/aws-s3": "^1.203.0",
     "aws-cdk-lib": "^2.237.1",
-    "constructs": "^10.0.0"
+    "constructs": "^10.0.0",
+    "source-map-support": "^0.5.21"
   }
 }
